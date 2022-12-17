@@ -1,0 +1,21 @@
+{
+  "name": "tech-avidus",
+  "version": "1.0.0",
+  "description": "practicle round",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon  server.js"
+  },
+  "author": "Harshil dudhat",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-validator": "^6.14.2",
+    "mongoose": "^6.8.0",
+    "multer": "^1.4.5-lts.1",
+    "nodemon": "^2.0.20"
+  }
+}
