@@ -2,8 +2,8 @@ import Product from "../models/Product.js";
 import { ResponseMsg } from "../../utils/ResponseMsg.js";
 import fs from "fs";
 import path from "path";
-const __dirname = path.resolve();
-import { dirname } from "path";
+import { fileURLToPath } from "url";
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 export const addProduct = async (req, res) => {
   try {
     let { name, detail, price, quantity } = req.body;
@@ -66,6 +66,12 @@ export const editProduct = async (req, res) => {
     price ? (product.price = price) : "";
     quantity ? (product.quantity = quantity) : "";
     if (picture) {
+      let url = product.picture;
+      url = url.slice(28);
+      console.log(url);
+      fs.unlink(`./public/uploads${url}`, (err) => {
+        console.log(err);
+      });
       product.picture = picture;
     }
 
@@ -95,6 +101,11 @@ export const deleteProduct = async (req, res) => {
         message: ResponseMsg.PRODUCT_NOT_EXIST,
       });
     }
+    let url = product.picture;
+    url = url.slice(28);
+    fs.unlink(`./public/uploads${url}`, (err) => {
+      console.log(err);
+    });
     await product.remove();
     return res.status(200).json({
       message: ResponseMsg.PRODUCT_DELETED,
