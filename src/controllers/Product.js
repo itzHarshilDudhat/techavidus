@@ -68,7 +68,6 @@ export const editProduct = async (req, res) => {
     if (picture) {
       let url = product.picture;
       url = url.slice(28);
-      console.log(url);
       fs.unlink(`./public/uploads${url}`, (err) => {
         console.log(err);
       });
